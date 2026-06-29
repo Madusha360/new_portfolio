@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+/* Alabaster Light Mode */
+:root, .theme-alabaster {
+  --background: #fcfbf9; /* Soft museum bone-white */
+  --foreground: #111111; /* Deep ink black */
+  --card-bg: #f5f3ef; /* Slightly darker than body for soft depth */
+  --card-border: rgba(17, 17, 17, 0.06);
+  --accent: #9e472a; /* Earthy terracotta matching user photo */
+  --accent-foreground: #fcfbf9;
+  --muted: #4c4c4c;
+  --muted-border: rgba(17, 17, 17, 0.04);
+  --nav-bg: rgba(252, 251, 249, 0.7);
+  --selection-bg: #ece9e2;
+  --grid-color: rgba(17, 17, 17, 0.035);
+}
+
+/* Obsidian Dark Mode */
+.theme-obsidian {
+  --background: #080808; /* Deep obsidian */
+  --foreground: #eaeaea; /* Crisp off-white */
+  --card-bg: #111111; /* Elevate card background */
+  --card-border: rgba(234, 234, 234, 0.06);
+  --accent: #d4af37; /* Gallery gold */
+  --accent-foreground: #080808;
+  --muted: #aaaaaa;
+  --muted-border: rgba(234, 234, 234, 0.04);
+  --nav-bg: rgba(8, 8, 8, 0.7);
+  --selection-bg: #222222;
+  --grid-color: rgba(254, 254, 254, 0.015);
+}
+
+/* Blueprint Navy Mode */
+.theme-blueprint {
+  --background: #091220; /* Technical Blueprint Navy */
+  --foreground: #e0f2fe; /* Light sky blue */
+  --card-bg: #101c30; /* Medium navy */
+  --card-border: rgba(56, 189, 248, 0.16);
+  --accent: #38bdf8; /* Sky / Cyan accent */
+  --accent-foreground: #091220;
+  --muted: #94a3b8; /* Slate gray */
+  --muted-border: rgba(56, 189, 248, 0.08);
+  --nav-bg: rgba(9, 18, 32, 0.75);
+  --selection-bg: #1e293b;
+  --grid-color: rgba(56, 189, 248, 0.045);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-border: var(--muted-border);
+  --color-nav-bg: var(--nav-bg);
+  --color-selection-bg: var(--selection-bg);
+  --color-grid-color: var(--grid-color);
+  
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+/* Custom transitions and scrollbar */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* Selection highlight color */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--foreground);
+}
+
+/* Minimalist scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Grid overlay background utility */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+}
