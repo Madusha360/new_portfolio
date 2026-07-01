@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, Variants } from "framer-motion";
-import { Mail, FileText, ArrowDown } from "lucide-react";
+import { Mail, FileText, ArrowDown, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import TechDock from "./TechDock";
 
@@ -38,8 +38,11 @@ const socialLinks = [
     label: "WhatsApp"
   },
   { href: "mailto:isurangamadusha476@gmail.com", icon: <Mail size={18} />, label: "Email" },
-  { href: "/resume-1.pdf", icon: <FileText size={18} />, label: "Resume 1" },
-  { href: "/resume-2.pdf", icon: <FileText size={18} />, label: "Resume 2" },
+];
+
+const resumeLinks = [
+  { href: "/resume-1.pdf", label: "Resume 1" },
+  { href: "/resume-2.pdf", label: "Resume 2" },
 ];
 
 export default function Hero() {
@@ -194,6 +197,33 @@ export default function Hero() {
                   <span className="font-light">{link.label}</span>
                 </a>
               ))}
+
+              <details className="relative group">
+                <summary
+                  className="list-none flex items-center gap-2.5 text-xs font-mono tracking-wider text-muted hover:text-foreground bg-card-bg/15 hover:bg-card-bg/40 border border-card-border hover:border-accent/40 px-4.5 py-2.5 rounded-full transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_20px_rgba(111,95,77,0.04)] hover:-translate-y-0.5 cursor-pointer"
+                  aria-label="Resume downloads"
+                >
+                  <span className="text-muted/80 group-hover:text-accent transition-colors duration-200">
+                    <FileText size={18} />
+                  </span>
+                  <span className="font-light">Resume</span>
+                  <ChevronDown size={14} className="transition-transform duration-200 group-open:rotate-180" />
+                </summary>
+
+                <div className="absolute left-0 top-full mt-2 min-w-[160px] rounded-2xl border border-card-border bg-background/95 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.08)] p-1.5 z-20">
+                  {resumeLinks.map((resume) => (
+                    <a
+                      key={resume.href}
+                      href={resume.href}
+                      download
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-mono tracking-wide text-muted hover:text-foreground hover:bg-card-bg/40 transition-colors duration-200"
+                    >
+                      <FileText size={14} className="text-accent" />
+                      <span>{resume.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </details>
             </motion.div>
 
           </div>
